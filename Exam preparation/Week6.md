@@ -300,7 +300,74 @@ The Laplacian matrix for a graph is defined as $L = D - A$. It captures the rela
 
 $$L = \begin{pmatrix} 1 & -1 & 0 & 0 & 0 & 0 \\ 0 & 1 & -1 & 0 & 0 & 0 \\ -1 & -1 & 2 & 0 & 0 & 0 \\ 0 & 0 & -1 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 & 1 & -1 \\ 0 & 0 & 0 & 0 & -1 & 1 \end{pmatrix}$$
 
+![[Pasted image 20260422135922.png]]
 
+
+To solve for the shortest paths from **Clacton** to all other cities using Dijkstra's algorithm, we iteratively update the shortest known distances.
+
+In the "matrix form" (or routing table format), we track the shortest distance to each node at every step, along with its predecessor node (denoted in parentheses).
+
+### 1. Graph Edge Data Extracted
+
+First, here are the directed edges and weights originating from the image to ensure accuracy:
+
+- **From Clacton:** to Harwich (17), to Tiptree (29), to Maldon (40)
+    
+- **From Harwich:** to Tiptree (31), to Blaxhall (40), to Dunwich (53)
+    
+- **From Tiptree:** to Feering (3)
+    
+- **From Feering:** to Maldon (11), to Blaxhall (46)
+    
+- **From Maldon:** to Tiptree (8)
+    
+- **From Blaxhall:** to Dunwich (15)
+    
+- **From Dunwich:** to Blaxhall (17)
+    
+
+---
+
+### 2. Dijkstra's Algorithm: Matrix Form
+
+- **Notation:** `Distance (Predecessor Node)`. For example, `17 (C)` means the distance is 17 coming from Clacton.
+    
+- **Bold text** indicates the node with the minimum distance selected to be "visited" at that step. Once visited, a node's shortest path is locked in.
+    
+
+|**Step**|**Visited Node (Min Dist)**|**Blaxhall (B)**|**Dunwich (D)**|**Feering (F)**|**Harwich (H)**|**Maldon (M)**|**Tiptree (T)**|
+|---|---|---|---|---|---|---|---|
+|0|_Init_ (Clacton = 0)|$\infty$|$\infty$|$\infty$|$\infty$|$\infty$|$\infty$|
+|1|**Clacton (0)**|$\infty$|$\infty$|$\infty$|**17 (C)**|40 (C)|29 (C)|
+|2|**Harwich (17)**|57 (H)|70 (H)|$\infty$|17 (C)|40 (C)|**29 (C)**|
+|3|**Tiptree (29)**|57 (H)|70 (H)|**32 (T)**|17 (C)|40 (C)|29 (C)|
+|4|**Feering (32)**|57 (H)|70 (H)|32 (T)|17 (C)|**40 (C)**|29 (C)|
+|5|**Maldon (40)**|**57 (H)**|70 (H)|32 (T)|17 (C)|40 (C)|29 (C)|
+|6|**Blaxhall (57)**|57 (H)|**70 (H)**|32 (T)|17 (C)|40 (C)|29 (C)|
+|7|**Dunwich (70)**|57 (H)|70 (H)|32 (T)|17 (C)|40 (C)|29 (C)|
+
+_Note on Step 4:_ When Feering is visited (dist 32), checking the path to Maldon gives $32 + 11 = 43$. Because the existing known path to Maldon directly from Clacton is shorter ($40$), the value for Maldon is not updated.
+
+---
+
+### 3. Final Shortest Paths Summary
+
+Reading the final locked-in row of the matrix, the shortest distances and exact paths from **Clacton** are:
+
+- **To Harwich:** 17 (Path: Clacton $\rightarrow$ Harwich)
+    
+- **To Tiptree:** 29 (Path: Clacton $\rightarrow$ Tiptree)
+    
+- **To Feering:** 32 (Path: Clacton $\rightarrow$ Tiptree $\rightarrow$ Feering)
+    
+- **To Maldon:** 40 (Path: Clacton $\rightarrow$ Maldon)
+    
+- **To Blaxhall:** 57 (Path: Clacton $\rightarrow$ Harwich $\rightarrow$ Blaxhall)
+    
+- **To Dunwich:** 70 (Path: Clacton $\rightarrow$ Harwich $\rightarrow$ Dunwich)
+
+
+![[Pasted image 20260422135849.png]]
 To find the minimum time in which the construction project can be completed, we need to perform a **Critical Path Analysis**. This involves doing a "forward pass" to calculate the Earliest Start (ES) and Earliest Finish (EF) times for each task.
 
 The minimum project completion time is equal to the length of the **Critical Path**, which is the longest sequence of dependent tasks in the project.
