@@ -280,8 +280,6 @@ In an incidence matrix for a directed graph, rows represent vertices and columns
 
 _Note: Edges are labeled 1-7 in red._
 
-### 2. Incidence Matrix ($M$)
-
 _(Rows represent vertices 0-5, columns represent edges 1-7)_
 
 $$M = \begin{pmatrix} 0 & 0 & 0 & 1 & 0 & 0 & -1 \\ 0 & 0 & 0 & 0 & -1 & 1 & 1 \\ 0 & 0 & 1 & -1 & 1 & -1 & 0 \\ 0 & 0 & -1 & 0 & 0 & 0 & 0 \\ 1 & -1 & 0 & 0 & 0 & 0 & 0 \\ -1 & 1 & 0 & 0 & 0 & 0 & 0 \end{pmatrix}$$
@@ -303,3 +301,59 @@ The Laplacian matrix for a graph is defined as $L = D - A$. It captures the rela
 $$L = \begin{pmatrix} 1 & -1 & 0 & 0 & 0 & 0 \\ 0 & 1 & -1 & 0 & 0 & 0 \\ -1 & -1 & 2 & 0 & 0 & 0 \\ 0 & 0 & -1 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 & 1 & -1 \\ 0 & 0 & 0 & 0 & -1 & 1 \end{pmatrix}$$
 
 
+To find the minimum time in which the construction project can be completed, we need to perform a **Critical Path Analysis**. This involves doing a "forward pass" to calculate the Earliest Start (ES) and Earliest Finish (EF) times for each task.
+
+The minimum project completion time is equal to the length of the **Critical Path**, which is the longest sequence of dependent tasks in the project.
+
+### 1. Forward Pass Analysis
+
+To calculate the times, we use these rules:
+
+- **Earliest Start (ES):** The maximum Earliest Finish (EF) of all immediately preceding tasks. If a task has no predecessors, its ES is 0.
+    
+- **Earliest Finish (EF):** The Earliest Start (ES) + Task Time.
+    
+
+|**Task**|**Time**|**Preceding Tasks**|**Earliest Start (ES)**|**Earliest Finish (EF = ES + Time)**|
+|---|---|---|---|---|
+|**A**|6|None|0|0 + 6 = **6**|
+|**D**|8|None|0|0 + 8 = **8**|
+|**H**|9|None|0|0 + 9 = **9**|
+|**B**|9|A, D|Max(6, 8) = **8**|8 + 9 = **17**|
+|**I**|6|D, H|Max(8, 9) = **9**|9 + 6 = **15**|
+|**C**|10|B, I|Max(17, 15) = **17**|17 + 10 = **27**|
+|**E**|9|B|17|17 + 9 = **26**|
+|**F**|13|I|15|15 + 13 = **28**|
+|**G**|5|C, E, F|Max(27, 26, 28) = **28**|28 + 5 = **33**|
+
+---
+
+### 2. Minimum Completion Time
+
+Task G is the final task in the network (all other tasks eventually lead to it). Its Earliest Finish time determines the completion time of the entire project.
+
+- **Minimum Project Time = 33 days**
+    
+
+---
+
+### 3. The Critical Path
+
+To verify this and find the bottleneck of the project, we can look at the lengths of the different paths from start to finish. The critical path is the longest path; any delay on this path will delay the entire project.
+
+- Path 1 (A $\rightarrow$ B $\rightarrow$ C $\rightarrow$ G): 6 + 9 + 10 + 5 = **30 days**
+    
+- Path 2 (A $\rightarrow$ B $\rightarrow$ E $\rightarrow$ G): 6 + 9 + 9 + 5 = **29 days**
+    
+- Path 3 (D $\rightarrow$ B $\rightarrow$ C $\rightarrow$ G): 8 + 9 + 10 + 5 = **32 days**
+    
+- Path 4 (D $\rightarrow$ I $\rightarrow$ C $\rightarrow$ G): 8 + 6 + 10 + 5 = **29 days**
+    
+- Path 5 (D $\rightarrow$ I $\rightarrow$ F $\rightarrow$ G): 8 + 6 + 13 + 5 = **32 days**
+    
+- Path 6 (H $\rightarrow$ I $\rightarrow$ F $\rightarrow$ G): 9 + 6 + 13 + 5 = **33 days**
+    
+
+The sequence **H $\rightarrow$ I $\rightarrow$ F $\rightarrow$ G** takes the longest (33 days). Therefore, it is the critical path.
+
+Show me the visualization
