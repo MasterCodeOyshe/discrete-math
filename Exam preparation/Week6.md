@@ -246,4 +246,60 @@ From Node C, our 1st step can go to **A, B, or F**. Let's calculate the subseque
 
 Total 3-step paths from C = 10 + 9 + 7 = 26.
 
+### **Question 3**
+
+Let’s examine the graph on the left. (Note: numbers are edge numbers, not weights.)
+
+![[Pasted image 20260422084710.png]]
+
+1. Define the **Adjacency Matrix** ($A$).
+2. Define the **Incidence Matrix** ($M$).
+3. Define the **Degree Matrix** ($D$).
+4. Define the **Laplacian Matrix** ($L$).
+---
+
+### 1. Adjacency Matrix ($A$)
+
+For a directed graph, the entry $a_{ij} = 1$ if there is an edge from vertex $i$ to vertex $j$, and $0$ otherwise.
+### 1. Adjacency Matrix ($A$)
+
+$$A = \begin{pmatrix} 0 & 1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 & 0 \\ 1 & 1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 & 1 & 0 \end{pmatrix}$$
+
+---
+
+### 2. Incidence Matrix ($M$)
+
+In an incidence matrix for a directed graph, rows represent vertices and columns represent edges.
+
+- $-1$ if the edge leaves the vertex (source).
+    
+- $1$ if the edge enters the vertex (sink).
+    
+- $0$ otherwise.
+    
+
+_Note: Edges are labeled 1-7 in red._
+
+### 2. Incidence Matrix ($M$)
+
+_(Rows represent vertices 0-5, columns represent edges 1-7)_
+
+$$M = \begin{pmatrix} 0 & 0 & 0 & 1 & 0 & 0 & -1 \\ 0 & 0 & 0 & 0 & -1 & 1 & 1 \\ 0 & 0 & 1 & -1 & 1 & -1 & 0 \\ 0 & 0 & -1 & 0 & 0 & 0 & 0 \\ 1 & -1 & 0 & 0 & 0 & 0 & 0 \\ -1 & 1 & 0 & 0 & 0 & 0 & 0 \end{pmatrix}$$
+
+---
+
+### 3. Degree Matrix ($D$)
+
+For directed graphs, the Degree Matrix usually represents the **Out-Degree** (number of edges leaving a vertex).
+
+$$D = \begin{pmatrix} 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 2 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 0 & 1 \end{pmatrix}$$
+
+---
+
+### 4. Laplacian Matrix ($L$)
+
+The Laplacian matrix for a graph is defined as $L = D - A$. It captures the relationship between the degree of the vertices and their connectivity.
+
+$$L = \begin{pmatrix} 1 & -1 & 0 & 0 & 0 & 0 \\ 0 & 1 & -1 & 0 & 0 & 0 \\ -1 & -1 & 2 & 0 & 0 & 0 \\ 0 & 0 & -1 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 & 1 & -1 \\ 0 & 0 & 0 & 0 & -1 & 1 \end{pmatrix}$$
+
 
