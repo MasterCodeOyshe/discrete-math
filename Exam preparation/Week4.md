@@ -13,7 +13,8 @@ Determine whether $p$ is congruent to $q \pmod m$.
 
 ### **Solutions**
 
-**Concept:** Two integers $p$ and $q$ are congruent modulo $m$ (written mathematically as $p \equiv q \pmod m$) if their difference $(p - q)$ is perfectly divisible by $m$. This means the result of $\frac{p - q}{m}$ must be an integer with no remainder. Alternatively, you can check if both numbers have the same remainder when divided by $m$.
+**Concept:** Two integers $p$ and $q$ are congruent modulo $m$ (written mathematically as $p \equiv q \pmod m$) if they leave the **same remainder** when divided by (m).
+
 
 **1. $p = 134$, $q = 88$, and $m = 6$**
 
