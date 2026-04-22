@@ -26,6 +26,7 @@ $$4y_{n+2} - 5y_{n+1} + y_n = 0, \quad y_0 = 1, y_1 = 2$$
 1. **Find the characteristic equation:**$$4r^2 - 5r + 1 = 0$$
 2. **Solve for the roots:** Factor the quadratic equation:$$4r^2 - 4r - r + 1 = 0$$$$4r(r - 1) - 1(r - 1) = 0$$$$(4r - 1)(r - 1) = 0$$
     The roots are $r_1 = \frac{1}{4}$ and $r_2 = 1$.
+
     
 3. **Write the general solution:** Since the roots are distinct, the general form is:$$y_n = c_1(1)^n + c_2\left(\frac{1}{4}\right)^n$$$$y_n = c_1 + c_2\left(\frac{1}{4}\right)^n$$
 4. **Apply the initial conditions:** We need to find the specific values for $c_1$ and $c_2$ using the given conditions $y_0 = 1$ and $y_1 = 2$.
@@ -62,7 +63,8 @@ The general solution is the sum of the homogeneous solution ($y_h^{(n)}$) and th
     
     $$y_h^{(n)} = (c_1 + c_2n)2^n$$
     
-2. **Find the particular solution:** The right-hand side is $f(n) = 2^n$. Since $r = 2$ is a root of the characteristic equation with multiplicity 2, our guess for the particular solution must be multiplied by $n^2$.
+1. **Find the particular solution:** The right-hand side is $f(n) = 2^n$. Since $r = 2$ is a root of the characteristic equation with multiplicity 2, our guess for the particular solution must be multiplied by $n^2$.
+	![[Pasted image 20260422085949.png]]
     
     Let $y_p^{(n)} = An^2 2^n$. Substitute this back into the original recurrence relation:
     
