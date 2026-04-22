@@ -68,6 +68,15 @@ D. $(p \downarrow p) \downarrow p$
 
 ### **Solution**
 
+- **Annulment:** $A \cdot 0 = 0$ and $A + 1 = 1$
+- **Identity:** $A \cdot 1 = A$ and $A + 0 = A$
+- **Idempotent:** $A \cdot A = A$ and $A + A = A$
+- **Complement:** $A \cdot \bar{A} = 0$ and $A + \bar{A} = 1$
+- **Double Negation:** $\bar{\bar{A}} = A$
+- **De Morgan's Theorem:**
+    1. $\overline{A \cdot B} = \bar{A} + \bar{B}$ (Break the line, change the sign)
+    2. $\overline{A + B} = \bar{A} \cdot \bar{B}$
+
 The correct answer is **A. $p \downarrow p$**.
 
 **Explanation:**
