@@ -226,58 +226,29 @@ Let the sum be denoted as $S_n = \sum_{k=1}^n \frac{1}{\sqrt{k}}$. We want to fi
 
 So, $n=2$ is our candidate for the smallest integer. Now, we must prove that the inequality holds for all integers $n \ge 2$.
 
-**Step 2: Prove it holds for all $n \ge 2$ using Mathematical Induction**
+### **2. Proof by Induction ($n \ge 2$)**
 
-- **Base Case:** We have already shown it holds for $n=2$.
-    
-- **Inductive Hypothesis:** Assume the inequality is true for some arbitrary integer $k \ge 2$. That is, assume:
-    
-    $$S_k = \frac{1}{\sqrt{1}} + \frac{1}{\sqrt{2}} + \dots + \frac{1}{\sqrt{k}} > \sqrt{k}$$
-    
-- **Inductive Step:** We need to show it is true for $k+1$. That is, we must show:
-    
-    $$S_{k+1} > \sqrt{k+1}$$
-    
-    We can write $S_{k+1}$ as $S_k + \frac{1}{\sqrt{k+1}}$.
-    
-    Using our inductive hypothesis ($S_k > \sqrt{k}$), we can set up the following inequality:
-    
-    $$S_{k+1} = S_k + \frac{1}{\sqrt{k+1}} > \sqrt{k} + \frac{1}{\sqrt{k+1}}$$
-    
-    Now, we need to prove that this right-hand side is strictly greater than $\sqrt{k+1}$:
-    
-    $$\sqrt{k} + \frac{1}{\sqrt{k+1}} > \sqrt{k+1}$$
-    
-    To verify this, let's manipulate the inequality. Multiply both sides by the positive term $\sqrt{k+1}$:
-    
-    $$\sqrt{k}\sqrt{k+1} + 1 > \sqrt{k+1}\sqrt{k+1}$$
-    
-    $$\sqrt{k(k+1)} + 1 > k + 1$$
-    
-    Subtract 1 from both sides:
-    
-    $$\sqrt{k^2+k} > k$$
-    
-    Since $k$ is a positive integer ($k \ge 1$), we know that $k^2 + k > k^2$.
-    
-    Taking the square root of both sides (which preserves the inequality for positive numbers):
-    
-    $$\sqrt{k^2+k} > \sqrt{k^2} = k$$
-    
-    This statement is clearly true. Working backward, this proves that $\sqrt{k} + \frac{1}{\sqrt{k+1}} > \sqrt{k+1}$.
-    
-    Combining this with our earlier step:
-    
-    $$S_{k+1} > \sqrt{k} + \frac{1}{\sqrt{k+1}} > \sqrt{k+1}$$
-    
-    $$S_{k+1} > \sqrt{k+1}$$
-    
+**Assume** it holds for $k$:
 
-The inductive step holds.
+$$S_k > \sqrt{k}$$
 
-**Conclusion:**
+**Prove** it holds for $k+1$:
 
-By mathematical induction, the inequality is true for all integers $n \ge 2$. The smallest integer for which this is true is **$n = 2$**.
+$$S_{k+1} = S_k + \frac{1}{\sqrt{k+1}} > \sqrt{k} + \frac{1}{\sqrt{k+1}}$$
+
+We just need to show that this new expression is greater than $\sqrt{k+1}$:
+
+$$\sqrt{k} + \frac{1}{\sqrt{k+1}} > \sqrt{k+1}$$
+
+Multiply the entire inequality by $\sqrt{k+1}$:
+
+$$\sqrt{k(k+1)} + 1 > k + 1$$
+
+$$\sqrt{k^2 + k} > k$$
+
+Because $k \ge 1$, we know $k^2 + k > k^2$. Therefore, taking the square root gives $\sqrt{k^2+k} > k$.
+
+This confirms the inequality is strictly true, proving by induction that $S_n > \sqrt{n}$ for all integers **$n \ge 2$**.
 
 ### **Question 4**
 
